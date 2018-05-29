@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-
+<script src="resources/jquery-3.2.1.min.js"></script>
 
 <%@page session="true" import="java.util.*" %>
 <%
@@ -126,12 +126,12 @@ Calendar cal = Calendar.getInstance();
 </body bgcolor='white'>
 <table border='1' width='519' celpadding='0' cellspacing='0'>
   <tr>
-	<td width='150' align='right' valign='middle'><a href="cal.jsp?month=<%=currMonth%>&year=<%=currYear%>&action=0"><font size="1">Previous Month</font></a></td>
+	<td width='150' align='right' valign='middle'><a href="calendar.jsp?month=<%=currMonth%>&year=<%=currYear%>&action=0"><font size="1">이전달</font></a></td>
 	<td width='260' align='center' valign='middle'><b><%=getDateName (cal.get(cal.MONTH)) + " " + cal.get(cal.YEAR)%></b></td>
-	<td width='173' align='left' valign='middle'><a href="cal.jsp?month=<%=currMonth%>&year=<%=currYear%>&action=1"><font size="1">Next Month</font></a></td>
+	<td width='173' align='left' valign='middle'><a href="calendar.jsp?month=<%=currMonth%>&year=<%=currYear%>&action=1"><font size="1">다음달</font></a></td>
   </tr>
 	</table>
-<table border="0" width="520" bordercolorlight="#C0C0C0" bordercolordark="#808080" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0">
+<table id="calTable" border="0" width="520" bordercolorlight="#C0C0C0" bordercolordark="#808080" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0">
   <td width="100%">
     <table border="2" width="519" bordercolorlight="#C0C0C0" bordercolordark="#000000" style="border-collapse: collapse" bordercolor="#000000" cellpadding="0" cellspacing="0" bgcolor="#DFDCD8">
   	<tr>
@@ -191,7 +191,7 @@ Calendar cal = Calendar.getInstance();
 							todayColor = "#ffffff";
 						}
 %> 
-		<td bgcolor ="<%=todayColor%>" width="<%=boxSize%>" align="left" height="<%=boxSize%>" valign="top"><%=dispDay%><br>
+		<td bgcolor ="<%=todayColor%>" width="<%=boxSize%>" align="left" height="<%=boxSize%>" valign="top"><a id="datelink" href="<%=dispDay%>"><%=dispDay%></a><br>
 		</td>
 <%
 					count += 1;
@@ -215,6 +215,35 @@ Calendar cal = Calendar.getInstance();
 </td>
 <tr><td>
 </table>
+
+<div id="result"><%=request.getContextPath()+"/getdate"%></div>
+<script>
+
+$('#calTable').on('click', "#datelink", function() {
+	
+	$("div").html("드루와<br>");
+	var day=$(this).attr("href");
+	var month=<%=currMonth+1%>;
+	var year=<%=currYear%>;
+		
+	alert(year);
+	
+	$.ajax({
+		type: 'post',
+		data: {"day":day, "month":month, "year":year},
+		url: '/getdate',
+		
+		success: function(server_out) {
+		
+			alert("드루와");
+		
+		}
+		
+	});//ajax-end
+	return false;
+})//on-end
+
+</script>
 </body>
 </html>
 
