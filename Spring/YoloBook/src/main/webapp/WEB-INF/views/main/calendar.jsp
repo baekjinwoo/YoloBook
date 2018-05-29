@@ -231,12 +231,10 @@ $('#calTable').on('click', "#datelink", function() {
 	$.ajax({
 		type: 'post',
 		data: {"day":day, "month":month, "year":year},
-		url: '/getdate',
+		url: '/',
 		
 		success: function(server_out) {
-		
-			alert("드루와");
-		
+			$("#result").append("<h4>"+server_out[i]+"<h4>");
 		}
 		
 	});//ajax-end

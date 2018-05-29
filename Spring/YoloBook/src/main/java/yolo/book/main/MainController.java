@@ -1,12 +1,20 @@
 package yolo.book.main;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import yolo.book.program.ProgramVO;
 
 @Controller
 public class MainController {
+	
+	@Autowired
+	MainService service;
+	
 	
 	@RequestMapping("/calendar")
 	public String getCalendar() {
@@ -15,13 +23,15 @@ public class MainController {
 	
 	@RequestMapping("/getdate")
 	@ResponseBody
-	public String getDate(String month, String day) {
+	public List<ProgramVO> getDate(String day, String month, String year) {
 		//ModelAndView mv=new ModelAndView();
 		System.out.println("드루와");
-		String date=month+day;
-		System.out.println("테스트:"+date);
 		
-		return date;
+		
+		String date=year+ month + day;
+		List<ProgramVO> list = service.getProgram(date);
+
+		return list;
 		
 		
 	}
