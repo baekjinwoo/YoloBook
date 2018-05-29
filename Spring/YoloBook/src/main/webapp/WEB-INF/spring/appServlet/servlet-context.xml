@@ -26,6 +26,8 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="yolo.book.program" />
+	<!-- 동욱: 패키지 설정 -->
+	<context:component-scan base-package="yolo.book.main" />
 	
 	<!-- 0 파일업로드 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
