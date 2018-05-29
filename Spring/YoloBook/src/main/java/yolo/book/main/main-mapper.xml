@@ -4,8 +4,8 @@
 
 <mapper namespace="main">
 
-	<select id="getProgram" parameterType="String" resultType="program">
-		SELECT * FROM PROGRAM WHERE DAY=#{date}
+	<select id="getProgram" parameterType="string" resultType="program">
+		SELECT * FROM PROGRAM WHERE DAY=TO_date(#{date}, 'YYYYMMDD')
 	</select>
 
 

@@ -11,7 +11,6 @@ import yolo.book.program.ProgramVO;
 
 @Controller
 public class MainController {
-	
 	@Autowired
 	MainService service;
 	
@@ -21,15 +20,18 @@ public class MainController {
 		return "main/calendar";
 	}
 	
-	@RequestMapping("/getdate")
+	@RequestMapping("/getProgram")
 	@ResponseBody
-	public List<ProgramVO> getDate(String day, String month, String year) {
-		//ModelAndView mv=new ModelAndView();
-		System.out.println("드루와");
+	public List<ProgramVO> getProgram(String day, String month, String year) {
+		String m="0"+month;
+		System.out.println(m);
+	
+		String date=year+ m + day;
+		System.out.println(date);
 		
-		
-		String date=year+ month + day;
 		List<ProgramVO> list = service.getProgram(date);
+		
+		System.out.println("리스트"+list);
 
 		return list;
 		

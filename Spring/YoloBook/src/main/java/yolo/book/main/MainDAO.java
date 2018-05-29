@@ -15,7 +15,8 @@ public class MainDAO {
 	SqlSession session;
 	
 	public List<ProgramVO> getProgram (String date){
-		return session.selectList("ajax.selectAll", date);
+		System.out.println("다오 안");
+		return session.selectList("main.getProgram", date);
 	}
 
 }

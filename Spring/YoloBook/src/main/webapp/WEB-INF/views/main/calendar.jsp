@@ -220,21 +220,20 @@ Calendar cal = Calendar.getInstance();
 <script>
 
 $('#calTable').on('click', "#datelink", function() {
-	
-	$("div").html("드루와<br>");
+
 	var day=$(this).attr("href");
 	var month=<%=currMonth+1%>;
 	var year=<%=currYear%>;
 		
-	alert(year);
-	
 	$.ajax({
 		type: 'post',
 		data: {"day":day, "month":month, "year":year},
-		url: '/',
+		url: 'getProgram',
 		
 		success: function(server_out) {
-			$("#result").append("<h4>"+server_out[i]+"<h4>");
+			for(var i=0; i<server_out.length; i++) {
+				$("#result").append("<h4>"+server_out[i]+"<h4>");
+			}
 		}
 		
 	});//ajax-end
