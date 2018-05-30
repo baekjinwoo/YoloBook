@@ -39,9 +39,9 @@ create sequence pnumber_seq increment by 1 start with 1 NOMAXVALUE;
 
 insert into program values(pnumber_seq.nextval, '가죽공예', '1시00분', '2시00분', '2017-05-11', '10000원', 5)
 
-select member_seq from dual;
 select * from program
+
+select member_seq from dual;
 drop sequence mnumber_seq
 drop sequence pnumber_seq
-
 delete program where pnumber>=1

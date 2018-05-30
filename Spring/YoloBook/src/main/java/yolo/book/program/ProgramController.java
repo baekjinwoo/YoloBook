@@ -1,16 +1,19 @@
 package yolo.book.program;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+
 
 //main으로 가는 화면
 @Controller
@@ -20,6 +23,31 @@ public class ProgramController {
 	
 	@Autowired 
 	SqlSession session;
+	
+////////0-a. 예약현황 조회 기능(전체조회)
+	@ModelAttribute("menulist") 
+	public List<ProgramVO> getProgramList(){
+		List<ProgramVO> list = session.selectList("program.selectAll");
+		return list;
+	}
+	
+	@RequestMapping(value="/select",method=RequestMethod.GET)
+	public String SelectProgram(){
+		
+		return "program/select";
+	}
+////////0-b. 일부조회	
+//	@RequestMapping(value="/select",method=RequestMethod.POST)
+//	public ModelAndView SelectProgramResult(){
+//		ModelAndView mv = new ModelAndView();
+//	
+//		List<ProgramVO> list = session.selectOne("program.selectAll");
+//		mv.addObject("volist",list);
+//	
+//		mv.setViewName("select");
+//	return mv;
+//	}
+	
 	
 ////////1. 신규프로그램 입력 ; 사진추가할 예정
 	@RequestMapping(value="/insert",method=RequestMethod.GET)
@@ -81,11 +109,12 @@ public class ProgramController {
 	}
 	
 	@RequestMapping(value="update",method=RequestMethod.POST)
-	public ModelAndView UpdateProgramResult(String day1, String time1, String time2){
+	public ModelAndView UpdateProgramResult(String pnumber1, String day1, String time1, String time2){
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String,String> map = new HashMap<String,String>();
 		
+		map.put("pnumber1",pnumber1);
 		map.put("day1", day1);
 		map.put("time1", time1);
 		map.put("time2", time2);
@@ -95,5 +124,4 @@ public class ProgramController {
 		return mv;
 	}
 	
-//////4. 예약현황 조회 기능
 }

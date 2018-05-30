@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset=UTF-8">
-<title> 프로그램 추가 </title>
+<title> 프로그램 추가페이지  </title>
 <style>
 	div{
 	background-color: gray;
-	width: 450px;
+	width: 500px;
 	}
 </style>
 </head>

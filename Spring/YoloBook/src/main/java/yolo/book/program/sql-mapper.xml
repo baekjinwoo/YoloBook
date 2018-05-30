@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapping파일 -->
+  <mapper namespace="program"> <!-- bakery = bakeryVO -->
+		<!-- 1. 프로그램 전체조회 -->
+		<select id="selectAll" resultType="program">
+		select * from program
+		</select>
+		
+		<!-- 2. 해당 번호의 프로그램 조회하라 -->
+		<select id="selectone" resultType="program" parameterType="int">
+			select * from program 
+			where mnumber = #{value}
+		</select>
+		
+		<!--3. 프로그램 추가 -->
+		<insert id="insert" parameterType="java.util.Map">
+			insert into program 
+			values(pnumber_seq.nextval, #{pname}, #{starttime}, #{endtime}, #{day}, #{price}, #{limit})
+		</insert>
+		
+		<!-- 4. 프로그램 제거 -->
+		<delete id="delete" parameterType="int">
+			delete program where pnumber=#{number}
+		</delete>
+		
+		<!-- 5. 프로그램 수정 -->
+		<update id="update" parameterType="java.util.Map">
+			update program
+		    set starttime= #{starttime},
+		        endtime= #{endtime}
+		        day= #{day}
+		    where pnumber =#{pnumber}    		
+		</update>
+  </mapper>
+  
+  
