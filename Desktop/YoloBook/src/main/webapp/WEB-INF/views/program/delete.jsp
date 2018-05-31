@@ -25,7 +25,7 @@
 </div>
 <br>
 	<form action="pdelete" method="post">
-		제거할 번호 : <input type="text" name="number"><br>
+		제거할 번호 : <input type="text" name="number" value=""><br>
 		<input type=submit value=버튼><br>
 	</form>
 </center>

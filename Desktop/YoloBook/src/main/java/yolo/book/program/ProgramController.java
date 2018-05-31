@@ -226,12 +226,15 @@ public class ProgramController {
 
 	////// 2. 삭제
 	@RequestMapping(value = "/pdelete", method = RequestMethod.GET)
-	public String DeleteProgram() {
+	public String DeleteProgram(String number) {
+		System.out.println(number);
+		
 		return "program/delete"; //jsp파일로 이동 delete.jsp
 	}
 
 	@RequestMapping(value = "/pdelete", method = RequestMethod.POST)
-	public String DeleteProgramResult(int number) {
+	public String DeleteProgramResult(String number) {
+		
 		session.delete("program.delete", number);
 		return "redirect:/pselect"; //controller 메소드의 매핑값으로 이동. url => pinsert로 이동
 	}
