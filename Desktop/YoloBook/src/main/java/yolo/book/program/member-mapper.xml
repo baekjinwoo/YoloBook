@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+
+<select id="all" resultType="member">
+		SELECT * FROM person
+	</select>
+	
+	<select id="loginCheck" parameterType="String" resultType="member">
+		SELECT * FROM
+		person where id= #{id}
+	</select>
+
+	<insert id="join" parameterType="member">
+		INSERT INTO person (mnumber, id, pw, email, phone, username)
+		VALUES(mnumber_seq.nextval, #{id},#{pw},#{email},#{phone},#{username})
+	</insert>
+	
+	<select id="idCheck" parameterType="String" resultType="String">
+		select id from person where id = #{id}
+	</select>
+
+	<!-- 수정 -->
+	<update id="update" parameterType="java.util.Map">
+		update person
+		set email = #{email}, phone= #{phone}, username= #{username}
+		where id = #{id} and pw = #{pw} 
+	</update>
+	
+	<!-- 회원정보삭제 -->
+	<delete id="delete" parameterType="java.util.Map">
+		delete person where id = #{id} and pw = #{pw}
+	</delete>
+</mapper>

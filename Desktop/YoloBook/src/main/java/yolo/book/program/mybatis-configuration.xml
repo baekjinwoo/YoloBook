@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- config파일 -->
+<configuration>
+	<typeAliases>
+		<typeAlias type="yolo.book.program.ProgramVO" alias="program" />
+		<typeAlias type="yolo.book.program.MemberVO" alias="member"/>
+	</typeAliases>
+</configuration>
